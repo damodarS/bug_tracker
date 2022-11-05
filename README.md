@@ -47,7 +47,7 @@ Launch Open API (swagger) http://localhost:8080/swagger-ui/index.html#/
 
 ### Test end points
 
-4. create bug
+1. create bug
 
 `curl -X 'POST' \
    'http://localhost:8080/bug' \
@@ -90,24 +90,11 @@ _`curl -X 'PUT' \
 "dataOption": "all"
 }'`
 
-Example payloads:
+5. Delete bug
 
-scenario 1: search basis on reporter, where values equals alice
-
-`{
-"searchCriteriaList": [
-{
-"filterKey": "reporter",
-"value": "alice",
-"operation": "eq",
-"dataOption": "all"
-}
-],
-"dataOption": "all"
-}`
-
-scenario 2: Search basis on status and severity, where value equals to NEW and LOW respectively.
-
+`curl -X 'DELETE' \
+'http://localhost:8080/bug/BUG_0001' \
+-H 'accept: */*'`
 
 ### To stop a container by container id
 
