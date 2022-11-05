@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class StringConverter {
 
-	public static String trimAndConvertToLowerCase(String str) {
-		return StringUtils.isNotEmpty(str) ? StringUtils.lowerCase(StringUtils.trim(str)) : StringUtils.EMPTY;
+	public static String trimAndConvertToUpperCase(String str) {
+		return StringUtils.isNotEmpty(str) ? StringUtils.upperCase(StringUtils.trim(str)) : StringUtils.EMPTY;
 	}
 }

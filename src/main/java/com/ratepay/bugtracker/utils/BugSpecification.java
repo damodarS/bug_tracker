@@ -21,7 +21,7 @@ public class BugSpecification implements Specification<Bug> {
     @Override
     public Predicate toPredicate(Root<Bug> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 
-        String strToSearch = searchCriteria.getValue().toString().toLowerCase();
+        String strToSearch = searchCriteria.getValue().toString();
 
         switch (Objects.requireNonNull(SearchOperation.getSimpleOperation(searchCriteria.getOperation()))) {
             case CONTAINS:

@@ -62,7 +62,7 @@ public class BugController {
     @Operation(summary = "Get bug by ID")
     @GetMapping("/{bugId}")
     public ResponseEntity<GlobalResponseDTO<BugDTO>> getBugId(@PathVariable String bugId) {
-        return ResponseEntity.ok(bugService.getBugById(StringConverter.trimAndConvertToLowerCase(bugId)));
+        return ResponseEntity.ok(bugService.getBugById(StringConverter.trimAndConvertToUpperCase(bugId)));
     }
 
     @Operation(summary = "create bug")
