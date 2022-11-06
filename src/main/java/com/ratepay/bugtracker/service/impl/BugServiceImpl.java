@@ -9,7 +9,6 @@ import com.ratepay.bugtracker.model.Bug;
 import com.ratepay.bugtracker.repository.BugRepository;
 import com.ratepay.bugtracker.service.BugService;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -22,12 +21,13 @@ import java.util.Optional;
 @Service
 @Transactional
 public class BugServiceImpl implements BugService {
-
-    @Autowired
-    private BugRepository bugRepository;
-
-    @Autowired
+    private final BugRepository bugRepository;
     private BugMapper bugMapper;
+
+    public BugServiceImpl(BugRepository bugRepository) {
+        this.bugRepository = bugRepository;
+        bugMapper = BugMapper.INSTANCE;
+    }
 
     @Override
     @Transactional(readOnly = true)

@@ -32,12 +32,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/bug")
 public class BugController {
-
-    @Autowired
-    private BugService bugService;
-
-    @Autowired
+    private final BugService bugService;
     private BugMapper bugMapper;
+
+    public BugController(BugService bugService) {
+        this.bugService = bugService;
+        bugMapper = BugMapper.INSTANCE;
+    }
 
     @Operation(summary = "Get bugs by filter criteria")
     @PostMapping("/search")

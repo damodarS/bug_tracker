@@ -6,11 +6,14 @@ import com.ratepay.bugtracker.dto.UpdateBugRequest;
 import com.ratepay.bugtracker.model.Bug;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {})
 public interface BugMapper {
+    BugMapper INSTANCE = Mappers.getMapper(BugMapper.class);
+
     BugDTO toBugDto(Bug bug);
 
     List<BugDTO> toBugs(List<Bug> bugs);
