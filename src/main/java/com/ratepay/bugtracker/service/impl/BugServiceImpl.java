@@ -22,16 +22,20 @@ import java.util.Optional;
 @Transactional
 public class BugServiceImpl implements BugService {
     private final BugRepository bugRepository;
-    private BugMapper bugMapper;
+    private final BugMapper bugMapper;
 
     public BugServiceImpl(BugRepository bugRepository) {
         this.bugRepository = bugRepository;
-        bugMapper = BugMapper.INSTANCE;
+        this.bugMapper = BugMapper.INSTANCE;
     }
 
     @Override
     @Transactional(readOnly = true)
     public GlobalResponseDTO<BugDTO> getBugById(String bugId) {
+        if(StringUtils.isEmpty(bugId)) {
+            return new GlobalResponseDTO<>(null, Constants.INVALID_BUG_ID);
+        }
+
         Optional<Bug> mayBeBug = bugRepository.findById(bugId);
         if (!mayBeBug.isPresent()) {
             return new GlobalResponseDTO<>(null, Constants.INVALID_BUG);
@@ -49,6 +53,10 @@ public class BugServiceImpl implements BugService {
     @Override
     public GlobalResponseDTO<BugDTO> updateBug(String bugId,
                                                UpdateBugRequest request) {
+        if(StringUtils.isEmpty(bugId)) {
+            return new GlobalResponseDTO<>(null, Constants.INVALID_BUG_ID);
+        }
+
         Optional<Bug> mayBeBug = bugRepository.findById(bugId);
         if (!mayBeBug.isPresent()) {
             return new GlobalResponseDTO<>(null, Constants.INVALID_BUG);
@@ -88,6 +96,10 @@ public class BugServiceImpl implements BugService {
 
     @Override
     public GlobalResponseDTO<BugDTO> deleteBugById(String bugId) {
+        if(StringUtils.isEmpty(bugId)) {
+            return new GlobalResponseDTO<>(null, Constants.INVALID_BUG_ID);
+        }
+
         Optional<Bug> mayBeBug = bugRepository.findById(bugId);
         if (!mayBeBug.isPresent()) {
             return new GlobalResponseDTO<>(null, Constants.INVALID_BUG);

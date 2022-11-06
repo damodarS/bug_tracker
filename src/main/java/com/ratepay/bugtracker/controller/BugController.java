@@ -11,7 +11,6 @@ import com.ratepay.bugtracker.utils.BugSpecificationBuilder;
 import com.ratepay.bugtracker.utils.SearchCriteria;
 import com.ratepay.bugtracker.utils.StringConverter;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -33,11 +32,11 @@ import java.util.List;
 @RequestMapping("/bug")
 public class BugController {
     private final BugService bugService;
-    private BugMapper bugMapper;
+    private final BugMapper bugMapper;
 
     public BugController(BugService bugService) {
         this.bugService = bugService;
-        bugMapper = BugMapper.INSTANCE;
+        this.bugMapper = BugMapper.INSTANCE;
     }
 
     @Operation(summary = "Get bugs by filter criteria")

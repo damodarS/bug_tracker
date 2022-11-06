@@ -4,6 +4,7 @@ import com.ratepay.bugtracker.constants.BugSeverity;
 import com.ratepay.bugtracker.constants.BugStatus;
 import com.ratepay.bugtracker.utils.StringPrefixedSequenceIdGenerator;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -23,6 +24,7 @@ import java.util.Date;
 
 @EntityListeners(AuditingEntityListener.class)
 @Data
+@Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
